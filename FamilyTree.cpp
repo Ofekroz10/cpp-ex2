@@ -17,32 +17,34 @@ namespace family
 
     Tree& Tree::addFather(string child, string father)
     {
-
+        Tree * t = new Tree("s");
+        return *t;
     }
 
     Tree& Tree::addMother(string child, string mother)
     {
-
+                Tree * t = new Tree("s");
+        return *t;
     }
 
     string Tree::relation(string s)
     {
-
+        return "s";
     }
 
     string Tree::find(string s)
     {
-
+        return "s";
     }
 
     string Tree::display()
     {
-
+        return "s";
     }
 
     string Tree::remove(string s)
     {
-
+        return "s";
     }
 
 
