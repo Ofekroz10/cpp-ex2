@@ -409,4 +409,14 @@ father = "ofek29";
  T.addFather("ofek28",father); 
 CHECK(T.find("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather") == string("ofek29"));
 
+father = "ofek29"; 
+ T.addFather("ofek28",father); 
+CHECK(T.find("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather") == string("ofek29"));
+
+father = "ofek29"; 
+ T.addFather("ofek28",father); 
+CHECK(T.find("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather") == string("ofek29"));
+
 }
+
+
