@@ -146,6 +146,27 @@ CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-gr
 father = "ofek34"; 
  T.addFather("ofek33",father); 
 CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
+
+father = "ofek35"; 
+ T.addFather("ofek34",father); 
+CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
+
+father = "ofek36"; 
+ T.addFather("ofek35",father); 
+CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
+
+father = "ofek37"; 
+ T.addFather("ofek36",father); 
+CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
+
+father = "ofek38"; 
+ T.addFather("ofek37",father); 
+CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
+
+father = "ofek39"; 
+ T.addFather("ofek38",father); 
+CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
+
 }
 
 TEST_CASE("Checking add mother") 
@@ -417,146 +438,5 @@ father = "ofek29";
  T.addFather("ofek28",father); 
 CHECK(T.find("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather") == string("ofek29"));
 
-}
-
-TEST_CASE("Checking add father") 
-{
-Tree T ("ofek0");
-string father= ""; 
-father = "ofek1"; 
- T.addFather("ofek0",father); 
-CHECK(T.relation(father) == string("father")); 
-
-father = "ofek2"; 
- T.addFather("ofek1",father); 
-CHECK(T.relation(father) == string("grandfather")); 
-
-father = "ofek3"; 
- T.addFather("ofek2",father); 
-CHECK(T.relation(father) == string("grand-grandfather")); 
-
-father = "ofek4"; 
- T.addFather("ofek3",father); 
-CHECK(T.relation(father) == string("grand-grand-grandfather")); 
-
-father = "ofek5"; 
- T.addFather("ofek4",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grandfather")); 
-
-father = "ofek6"; 
- T.addFather("ofek5",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grandfather")); 
-
-father = "ofek7"; 
- T.addFather("ofek6",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek8"; 
- T.addFather("ofek7",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek9"; 
- T.addFather("ofek8",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek10"; 
- T.addFather("ofek9",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek11"; 
- T.addFather("ofek10",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek12"; 
- T.addFather("ofek11",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek13"; 
- T.addFather("ofek12",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek14"; 
- T.addFather("ofek13",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek15"; 
- T.addFather("ofek14",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek16"; 
- T.addFather("ofek15",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek17"; 
- T.addFather("ofek16",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek18"; 
- T.addFather("ofek17",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek19"; 
- T.addFather("ofek18",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek20"; 
- T.addFather("ofek19",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek21"; 
- T.addFather("ofek20",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek22"; 
- T.addFather("ofek21",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek23"; 
- T.addFather("ofek22",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek24"; 
- T.addFather("ofek23",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek25"; 
- T.addFather("ofek24",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek26"; 
- T.addFather("ofek25",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek27"; 
- T.addFather("ofek26",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek28"; 
- T.addFather("ofek27",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek29"; 
- T.addFather("ofek28",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek30"; 
- T.addFather("ofek29",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek31"; 
- T.addFather("ofek30",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek32"; 
- T.addFather("ofek31",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek33"; 
- T.addFather("ofek32",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek34"; 
- T.addFather("ofek33",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
 }
 
