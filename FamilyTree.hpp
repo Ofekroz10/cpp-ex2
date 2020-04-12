@@ -18,14 +18,17 @@ namespace family
             string find(string s);
             void display();
             string remove(string s);
+            void Del(Tree * node);
+            Tree* findTree(string name);
 
         private:
         string data;
         Tree * father;
         Tree * mother;
 
-        Tree * findTree(string name);
-        int relativeInt(string name, int fm);
+        
+        int relativeInt(string name,int fOrM);
+        Tree* removeHelp(string s, int mf,Tree * pre);
 
     };
 

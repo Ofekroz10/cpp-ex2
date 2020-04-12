@@ -12,11 +12,35 @@ namespace family
 {
     int fOrM = 0;
 
+
+    void setFM(int x)
+    {
+        if (fOrM == 0)
+            fOrM = x;
+    }
+
+
     Tree::Tree(string s)
     {
+
         this->data = s;
         this->father = nullptr;
         this->mother = nullptr;
+    }
+
+    void Tree::Del(Tree * node)
+    {
+            if (node == nullptr) return;
+
+
+            /* first delete both subtrees */
+            Del(node->father);
+            Del(node->mother);
+
+
+            /* then delete the node */
+            free(node);
+
     }
 
     Tree& Tree::addFather(string child, string father)
@@ -86,7 +110,7 @@ namespace family
         if(this == nullptr)
             throw std::invalid_argument("null ptr exception");
 
-        int relative = this->relativeInt(s, 0);
+        int relative = this->relativeInt(s,0);
         if(relative < 0)
             return "unrelated";
 
@@ -116,7 +140,7 @@ namespace family
                 string value = "";
 
                 for(int i =0; i<grandNum;i++)
-                    value += "great-";
+                    value += "grand-";
 
                 if(fOrM == 2)
                     value +="grandmother";
@@ -128,6 +152,102 @@ namespace family
 
         return "eror";
 
+    }
+
+    string Tree::find(string s)
+    {
+        if (s == "father")
+        {
+            if (this->father == nullptr)
+                throw std::invalid_argument("father do not exist");
+            else
+            {
+                return this->father->data;
+            }
+        }
+
+        else if (s == "mother")
+        {
+            if (this->mother == nullptr)
+                throw std::invalid_argument("mother do not exist");
+            else
+            {
+                return this->mother->data;
+            }
+        }
+
+        else if (s == "grandmother")
+        {
+            if (this->mother == nullptr && this->father == nullptr)
+                throw std::invalid_argument("grandfather do not exist");
+            if (this->mother != nullptr)
+            {
+                if (this->mother->mother != nullptr)
+                    return this->mother->mother->data;
+            }
+            if (this->father != nullptr)
+            {
+                if (this->father->mother != nullptr)
+                    return this->father->mother->data;
+            }
+
+            throw std::invalid_argument("grandfather do not exist");
+        }
+
+        else if (s == "grandfather")
+        {
+            if(this->mother == nullptr && this->father == nullptr)
+                throw std::invalid_argument("grandfather do not exist");
+            if (this->mother != nullptr)
+            {
+                if (this->mother->father != nullptr)
+                    return this->mother->father->data;
+            }
+            if (this->father != nullptr)
+            {
+                if (this->father->father != nullptr)
+                    return this->father->father->data;
+            }
+
+            throw std::invalid_argument("grandfather do not exist");
+        }
+
+        else if (s.substr(0, 5) == "great")
+        {
+            bool isFather = true;
+            bool isMother = true;
+            string father = ""; string mother = "";
+            try {
+                father = this->father->find(s.substr(6));
+            }
+            catch (const std::invalid_argument & e)
+            {
+                isFather = false;
+            }
+            if (father != "")
+                return father;
+            try
+            {
+                mother = this->mother->find(s.substr(6));
+            }
+            catch (const std::invalid_argument & e)
+            {
+                isMother = false;
+            }
+
+            if (isMother == isFather && isFather== false)
+                throw invalid_argument(s + " do not recognized");
+            else if (isFather)
+            {
+                return father;
+            }
+            return mother;
+        }
+
+        else
+        {
+            throw std::invalid_argument(s + " do not recognize");
+        }
     }
 
     void Tree::display()
@@ -163,123 +283,90 @@ namespace family
         
     }
 
-
-    string Tree::find(string s)
-    {
-        if(s == "father")
-        {
-            if(this->father == nullptr)
-                throw std::invalid_argument("father do not exist");
-            else
-            {
-                return this->father->data;
-            }
-        }
-
-        else if(s == "mother")
-        {
-            if(this->mother == nullptr)
-                throw std::invalid_argument("mother do not exist");
-            else
-            {
-                return this->mother->data;
-            }
-        }
-
-        else if(s == "grandmother")
-        {
-            if(this->mother->mother == nullptr && this->father->mother == nullptr)
-                throw std::invalid_argument("grandmother do not exist");
-            else
-            {
-                return this->mother->mother == nullptr ? this->father->mother->data : this->mother->mother->data;
-            }
-        }
-
-        else if(s == "grandfather")
-        {
-            if(this->mother->mother == nullptr && this->father->mother == nullptr)
-                throw std::invalid_argument("grandfather do not exist");
-            else
-            {
-                return this->mother->father == nullptr ? this->father->father->data : this->mother->father->data;
-            }
-        }
-        
-        else if(s.substr(0,5) == "great")
-        {
-            bool isFather = true;
-            bool isMother = true;
-            string father= ""; string mother= "";
-            try{
-                father = this->father->find(s.substr(6));
-            }
-            catch(const std::invalid_argument& e)
-            {
-                isFather = false;
-            }
-
-            try
-            {
-                 mother = this->mother->find(s.substr(6));
-            }
-            catch(const std::invalid_argument& e)
-            {
-                isMother = false;
-            }
-
-            if(isMother == isFather == false)
-                throw invalid_argument(s+" do not recognized");
-            else if(isFather)
-            {
-                return father;
-            }
-            return mother;
-        }
-
-        else
-        {
-            throw std::invalid_argument(s+" do not recognize");
-        }
-        
-        
-    }
-
     string Tree::remove(string s)
     {
-        return "s";
+        Tree* root = removeHelp(s, 0, nullptr);
+        if (root == nullptr)
+            throw invalid_argument(s + " not exist");
+        
+        Del(root);
     }
 
-    Tree * Tree::findTree(string name)
+    Tree* Tree::removeHelp(string s, int mf, Tree* pre)
     {
-        if(this == nullptr)
-            return nullptr;
+        Tree* root;
+
+        if (this == nullptr)
+            root = nullptr;
         else
         {
-            if(this->data == name)
+
+            if (this->data == s)
+            {
+                root = this;
+                switch (mf)
+                {
+                case 0:
+                    break;
+                case 1:
+                    pre->father = nullptr;
+                    break;
+                case 2:
+                    pre->mother = nullptr;
+                    break;
+                }
                 return this;
+
+
+            }
             else
             {
-                Tree * left = this->father->findTree(name);
-                Tree * right = this->mother->findTree(name);
+                Tree* left = this->father->removeHelp(s, 1, this);
+                Tree* right = this->mother->removeHelp(s, 2, this);
 
-                if(left != nullptr )
+                if (left != nullptr)
                     return left;
-                else if(right != nullptr)
+
+                else if (right != nullptr)
                     return right;
                 else
                 {
                     return nullptr;
                 }
-                
             }
-            
-            
         }
-        
+    }
+    Tree* Tree::findTree(string name)
+    {
+        if (this == nullptr)
+            return nullptr;
+        else
+        {
+            if (this->data == name)
+                return this;
+            else
+            {
+                Tree* left = this->father->findTree(name);
+                Tree* right = this->mother->findTree(name);
+
+                if (left != nullptr)
+                    return left;
+                else if (right != nullptr)
+                    return right;
+                else
+                {
+                    return nullptr;
+                }
+
+            }
+
+
+        }
+
     }
 
 
+   
 
     int Tree::relativeInt(string name, int fm)
     {
@@ -288,7 +375,7 @@ namespace family
         
         else
         {
-            if(this->data == name)
+            if (this->data == name)
             {
                 fOrM = fm;
                 return 0;
@@ -301,9 +388,11 @@ namespace family
                 {
                     int x =0;
                     x = this->father->relativeInt(name, 1);
-                    int father = x == -999 ? -999 : 1 +x;
+                    int father = x == -999 ? -999 : 1 + x;
+          
                     x = this->mother->relativeInt(name, 2);
-                    int mother = x == -999 ? -999 : 1 +x;
+                    int mother = x == -999 ? -999 : 1 + x;
+
 
                     if(father == -999 )
                     {
@@ -315,15 +404,16 @@ namespace family
                 else if(this->mother != nullptr)
                 {
                      int x =0;
-                    x = this->mother->relativeInt(name, 2);
-                    int mother = x == -999 ? -999 : 1 +x;
+                    x = this->mother->relativeInt(name,2);
+                    int mother = x == -999 ? -999 : 1 + x;
+
                      if(mother > 0 )
                     {
                         return mother;
                     }
                     else
                     {
-                        return -999;
+                         return -999;
                     }
                     
                 }
@@ -332,6 +422,7 @@ namespace family
                       int x =0;
                     x = this->father->relativeInt(name, 1);
                     int father = x == -999 ? -999 : 1 +x;
+
                      if(father > 0 )
                     {
                         return father;
@@ -346,10 +437,11 @@ namespace family
             }
             
         }
+
+      
         
     }
 
-    
 
 
 }

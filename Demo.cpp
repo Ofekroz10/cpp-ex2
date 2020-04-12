@@ -23,9 +23,10 @@ family::Tree T ("Yosef"); // Yosef is the "root" of the tree (the youngest perso
 
 	T.display();                        // displays the tree in a human-friendly format.
 
-
 	cout << T.find("mother") << endl;  // prints "Rachel"
-	cout << T.find("great-great-grandfather") << endl;  // prints "Terah"
+
+	T.remove("Avraham");
+	T.display();
 
 
 
