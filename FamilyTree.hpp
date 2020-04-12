@@ -25,7 +25,7 @@ namespace family
         Tree * mother;
 
         Tree * findTree(string name);
-        int relativeInt(string name);
+        int relativeInt(string name,int fOrM);
 
     };
 

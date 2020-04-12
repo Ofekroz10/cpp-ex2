@@ -10,7 +10,15 @@ using namespace std;
 
 namespace family
 {
-    int fOrM = 1;
+    int fOrM = 0;
+
+
+    void setFM(int x)
+    {
+        if (fOrM == 0)
+            fOrM = x;
+    }
+
 
     Tree::Tree(string s)
     {
@@ -86,7 +94,7 @@ namespace family
         if(this == nullptr)
             throw std::invalid_argument("null ptr exception");
 
-        int relative = this->relativeInt(s);
+        int relative = this->relativeInt(s,0);
         if(relative < 0)
             return "unrelated";
 
@@ -202,15 +210,18 @@ namespace family
         
     }
 
-    int Tree::relativeInt(string name)
+    int Tree::relativeInt(string name, int fm)
     {
         if(this == nullptr)
             throw out_of_range("name not exist: "+name );
         
         else
         {
-            if(this->data == name)
+            if (this->data == name)
+            {
+                fOrM = fm;
                 return 0;
+            }
             else
             {
                 if(this->mother == nullptr && this->father == nullptr)
@@ -218,51 +229,49 @@ namespace family
                 else if(this->mother != nullptr && this->father != nullptr)
                 {
                     int x =0;
-                    x = this->father->relativeInt(name);
-                    int father = x == -999 ? -999 : 1 +x;
-                    x = this->mother->relativeInt(name);
-                    int mother = x == -999 ? -999 : 1 +x;
+                    x = this->father->relativeInt(name, 1);
+                    int father = x == -999 ? -999 : 1 + x;
+          
+                    x = this->mother->relativeInt(name, 2);
+                    int mother = x == -999 ? -999 : 1 + x;
+
 
                     if(father == -999 )
                     {
-                        fOrM = 2;
                         return mother;
                     }
 
-                    fOrM = 1;
                     return father;
                 }
                 else if(this->mother != nullptr)
                 {
                      int x =0;
-                    x = this->mother->relativeInt(name);
-                    int mother = x == -999 ? -999 : 1 +x;
+                    x = this->mother->relativeInt(name,2);
+                    int mother = x == -999 ? -999 : 1 + x;
+
                      if(mother > 0 )
                     {
-                        fOrM = 2;
                         return mother;
                     }
                     else
                     {
-                        return -999;
-                        fOrM = 1;
+                         return -999;
                     }
                     
                 }
                 else
                 {
                       int x =0;
-                    x = this->father->relativeInt(name);
+                    x = this->father->relativeInt(name, 1);
                     int father = x == -999 ? -999 : 1 +x;
+
                      if(father > 0 )
                     {
-                        fOrM = 1;
                         return father;
                     }
                     else
                     {
                         return -999;
-                        fOrM =2;
                     }
                     
                 }
@@ -270,10 +279,11 @@ namespace family
             }
             
         }
+
+      
         
     }
 
-    
 
 
 }
