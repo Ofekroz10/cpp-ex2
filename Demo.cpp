@@ -23,13 +23,9 @@ family::Tree T ("Yosef"); // Yosef is the "root" of the tree (the youngest perso
 
 	T.display();                        // displays the tree in a human-friendly format.
 
-	cout << T.relation("Yaakov") << endl;  // prints "father"
-	cout << T.relation("Rachel") << endl;  // prints "mother"
-	cout << T.relation("Rivka") << endl;  // prints "grandmother"
-	cout << T.relation("Avraham") << endl;  // prints "great-grandfather"
-	cout << T.relation("Terah") << endl;  // prints "great-great-grandfather"
-	cout << T.relation("xyz") << endl;  // prints "unrelated"
-	cout << T.relation("Yosef") << endl;  // prints "me"
+
+	cout << T.find("mother") << endl;  // prints "Rachel"
+	cout << T.find("great-great-grandfather") << endl;  // prints "Terah"
 
 
 
