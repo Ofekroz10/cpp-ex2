@@ -146,27 +146,6 @@ CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-gr
 father = "ofek34"; 
  T.addFather("ofek33",father); 
 CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek35"; 
- T.addFather("ofek34",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek36"; 
- T.addFather("ofek35",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek37"; 
- T.addFather("ofek36",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek38"; 
- T.addFather("ofek37",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
-father = "ofek39"; 
- T.addFather("ofek38",father); 
-CHECK(T.relation(father) == string("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather")); 
-
 }
 
 TEST_CASE("Checking add mother") 
@@ -439,4 +418,5 @@ father = "ofek29";
 CHECK(T.find("grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grand-grandfather") == string("ofek29"));
 
 }
+
 

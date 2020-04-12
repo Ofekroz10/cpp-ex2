@@ -16,13 +16,17 @@ namespace family
             Tree& addMother(string s, string mother);
             string relation(string s);
             string find(string s);
-            string display();
+            void display();
             string remove(string s);
 
         private:
         string data;
         Tree * father;
         Tree * mother;
+
+        Tree * findTree(string name);
+        int relativeInt(string name);
+
     };
 
 
