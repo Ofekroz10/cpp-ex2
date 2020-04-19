@@ -17,7 +17,7 @@ namespace family
             string relation(string s);
             string find(string s);
             void display();
-            string remove(string s);
+            void remove(string s);
             void Del(Tree * node);
             Tree* findTree(string name);
 

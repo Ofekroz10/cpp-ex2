@@ -41,6 +41,7 @@ namespace family
             /* then delete the node */
             free(node);
 
+
     }
 
     Tree& Tree::addFather(string child, string father)
@@ -283,13 +284,14 @@ namespace family
         
     }
 
-    string Tree::remove(string s)
+    void Tree::remove(string s)
     {
         Tree* root = removeHelp(s, 0, nullptr);
         if (root == nullptr)
             throw invalid_argument(s + " not exist");
         
         Del(root);
+
     }
 
     Tree* Tree::removeHelp(string s, int mf, Tree* pre)
