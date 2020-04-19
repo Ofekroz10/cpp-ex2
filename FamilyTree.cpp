@@ -337,6 +337,8 @@ namespace family
                 }
             }
         }
+        
+        return nullptr;
     }
     Tree* Tree::findTree(string name)
     {
